@@ -1,8 +1,9 @@
 import React from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
 import * as MailComposer from 'expo-mail-composer';
+
 import logoImg from '../../assets/logo.png';
 
 import styles from './styles';
@@ -21,6 +22,10 @@ export default function Detail() {
       recipients: ['eduardosbrasil10@gmail.com'],
       body: message
     });
+  }
+
+  function sendWhatsApp() {
+    Linking.openURL(`whatsapp://send?phone=5511976043113&text=${message}`);
   }
 
   return (
@@ -50,7 +55,7 @@ export default function Detail() {
         <Text style={styles.heroDescription}>Entre em contato:</Text>
 
         <View style={styles.actions}>
-          <TouchableOpacity style={styles.action} onPress={() => { }}>
+          <TouchableOpacity style={styles.action} onPress={sendWhatsApp}>
             <Text style={styles.actionText}>WhatsApp</Text>
           </TouchableOpacity>
 
