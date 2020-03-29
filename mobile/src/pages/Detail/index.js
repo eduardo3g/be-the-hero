@@ -1,7 +1,7 @@
 import React from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
+import { View, ScrollView, Text, Image, TouchableOpacity, Linking } from 'react-native';
 import * as MailComposer from 'expo-mail-composer';
 
 import logoImg from '../../assets/logo.png';
@@ -35,7 +35,7 @@ export default function Detail() {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Image source={logoImg} />
 
@@ -46,7 +46,7 @@ export default function Detail() {
 
       <View style={styles.incident}>
         <Text style={[styles.incidentProperty, { marginTop: 0 }]}>ONG:</Text>
-  <Text style={styles.incidentValue}>{incident.name} de {incident.city}/{incident.uf}.</Text>
+        <Text style={styles.incidentValue}>{incident.name} de {incident.city}/{incident.uf}.</Text>
 
         <Text style={styles.incidentProperty}>CASO:</Text>
         <Text style={styles.incidentValue}>{incident.title}</Text>
@@ -58,6 +58,9 @@ export default function Detail() {
             currency: 'BRL'
           }).format(incident.value)}
         </Text>
+
+        <Text style={styles.incidentProperty}>DETALHES:</Text>
+        <Text style={styles.incidentValue}>{incident.description}</Text>
       </View>
       <View style={styles.contactBox}>
         <Text style={styles.heroTitle}>Salve o dia!</Text>
@@ -77,6 +80,6 @@ export default function Detail() {
       </View>
 
 
-    </View>
+    </ScrollView>
   );
 }
